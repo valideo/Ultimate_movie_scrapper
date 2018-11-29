@@ -1,0 +1,34 @@
+cards-partial {
+
+    ion-card {
+        position: relative;
+        text-align: center;
+        background-color : black !important;
+        height: 250px;
+      }
+
+      ion-card img:hover{
+        opacity: .25;
+      }
+      ion-card img{
+        opacity: .5;
+      }
+    
+      .card-title {
+        position: absolute;
+        top: 20%;
+        font-size: 1.5em;
+        width: 100%;
+        font-weight: bold;
+        color: #fff;
+      }
+    
+      .card-subtitle {
+        font-size: 1.0em;
+        position: absolute;
+        top: 52%;
+        width: 100%;
+        color: #fff;
+      }
+
+}

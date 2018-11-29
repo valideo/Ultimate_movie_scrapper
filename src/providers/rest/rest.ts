@@ -9,15 +9,15 @@ export class RestProvider {
   apiGetMediaUrl = "http://www.omdbapi.com/?apikey=75522b56&i="
 
   constructor(public http: HttpClient) {
-    console.log('Hello RestProvider Provider');
   }
 
   searchMovieByKey(keyword : string) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       this.http.get(this.apiSearchMovieUrl+keyword).subscribe(data => {
-        resolve(data);
+        resolve(data['Search']);
       }, err => {
         console.log(err);
+        reject(err);
       });
     });
   }

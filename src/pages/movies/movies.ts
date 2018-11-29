@@ -1,12 +1,6 @@
+import { RestProvider } from './../../providers/rest/rest';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the MoviesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,11 +9,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MoviesPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  items: any = [];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public RestProvider: RestProvider) {
+  }
+
+  getMovies(key : string) {
+    this.RestProvider.searchMovieByKey(key)
+    .then(data => {
+      this.items = data;
+      console.log(this.items);
+    });
+  }
+
+  searchMovie(ev: any) {
+    const val = ev.target.value;
+    
+
+    if (val && val.trim() != '') {
+      this.getMovies(val);
+    }
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MoviesPage');
   }
 
 }
