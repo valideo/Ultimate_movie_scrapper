@@ -23,11 +23,12 @@ export class RestProvider {
   }
 
   searchSerieByKey(keyword : string) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       this.http.get(this.apiSearchSerieUrl+keyword).subscribe(data => {
-        resolve(data);
+        resolve(data['Search']);
       }, err => {
         console.log(err);
+        reject(err);
       });
     });
   }

@@ -7,6 +7,12 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+
+    <ion-searchbar padding (ionInput)="searchSerie($event)"></ion-searchbar>
+
+    <div *ngFor="let item of items">
+      <cards-partial [item]="item"></cards-partial>
+    </div>
 
 </ion-content>
