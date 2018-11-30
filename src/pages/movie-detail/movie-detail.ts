@@ -22,14 +22,12 @@ export class MovieDetailPage {
     this.mediaID = this.selectedMedia.imdbID;
     this.getMediaDetails(this.mediaID);
     this.pageTitle = this.selectedMedia.Title;
-    console.log(this.selectedMedia);
 
   }
 
   getMediaDetails(id : string){
     this.restProvider.getMediaById(id)
     .then(data => {
-      console.log(data);
       this.selectedMediaDetails = data;
       this.nbSeasons = parseInt(this.selectedMediaDetails.totalSeasons);
       if(this.nbSeasons > 0)
@@ -37,8 +35,8 @@ export class MovieDetailPage {
     });
   }
 
-  navigateToSeason(event, item){
-    this.navCtrl.push(SeasonDetailPage, {item:item});
+  navigateToSeason(event, seasonNb, item){
+    this.navCtrl.push(SeasonDetailPage, {seasonNb:seasonNb, item:item} );
   }
 
   ionViewDidLoad() {

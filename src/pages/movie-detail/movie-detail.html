@@ -35,7 +35,7 @@
           </ul>
 
             <ion-list *ngIf="nbSeasons > 0">
-                <button *ngFor="let item of nbSeasonsArray" (click)="navigateToSeason($event, item)" ion-item>Saison {{ item }}</button>
+                <button *ngFor="let item of nbSeasonsArray" (click)="navigateToSeason($event, item, selectedMediaDetails)" ion-item>Saison {{ item }}</button>
             </ion-list>
     
       </div>

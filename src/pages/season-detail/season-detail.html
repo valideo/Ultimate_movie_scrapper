@@ -1,18 +1,25 @@
-<!--
-  Generated template for the SeasonDetailPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>season-detail</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+      <ion-title>{{ pageTitle }}</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+  
+      <div *ngIf="selectedSeasonDetails" >
+      
+            <h2>
+              {{ pageTitle }}
+            </h2>
 
-</ion-header>
-
-
-<ion-content padding>
-
-</ion-content>
+              <ion-list>
+                  <button *ngFor="let item of selectedSeasonDetails.Episodes" ion-item>Episode {{ item.Episode }} - {{ item.Title }} </button>
+              </ion-list>
+      
+        </div>
+  
+  </ion-content>
+  

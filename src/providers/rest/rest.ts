@@ -44,7 +44,7 @@ export class RestProvider {
     });
   }
 
-  getSeasonByNumber(id : string, season : number) {
+  getSeasonByNumber(id : string, season : string) {
     return new Promise(resolve => {
       this.http.get(this.apiGetMediaUrl+id+"&Season="+season).subscribe(data => {
         resolve(data);
@@ -54,7 +54,7 @@ export class RestProvider {
     });
   }
 
-  getEpisodeByNumber(id : string, season : number, episode : number) {
+  getEpisodeByNumber(id : string, season : string, episode : string) {
     return new Promise(resolve => {
       this.http.get(this.apiGetMediaUrl+id+"&Season="+season+"&Episode="+episode).subscribe(data => {
         resolve(data);

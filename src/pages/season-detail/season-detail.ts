@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the SeasonDetailPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { RestProvider } from '../../providers/rest/rest';
 
 @IonicPage()
 @Component({
@@ -15,11 +9,27 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SeasonDetailPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  selectedSeason : any;
+  mediaID : string;
+  pageTitle : string = "";
+  selectedSeasonDetails : any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
+    this.selectedSeason = navParams.get('seasonNb');
+    this.mediaID = navParams.get('item').imdbID;
+    this.getSeasonDetails(this.mediaID, this.selectedSeason);
+    this.pageTitle = "Saison "+this.selectedSeason+" - "+navParams.get('item').Title;
+  }
+
+  getSeasonDetails(id : string, season : string){
+    this.restProvider.getSeasonByNumber(id, season)
+    .then(data => {
+      console.log(data);
+      this.selectedSeasonDetails = data;
+    });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SeasonDetailPage');
   }
 
 }
