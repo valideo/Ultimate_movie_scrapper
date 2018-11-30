@@ -1,3 +1,4 @@
+import { MovieDetailPage } from './../movie-detail/movie-detail';
 import { RestProvider } from './../../providers/rest/rest';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -24,12 +25,13 @@ export class MoviesPage {
 
   searchMovie(ev: any) {
     const val = ev.target.value;
-    
-
     if (val && val.trim() != '') {
       this.getMovies(val);
     }
 
+  }
+  navigateToDetail(event, item){
+    this.navCtrl.push(MovieDetailPage, {item:item});
   }
 
   ionViewDidLoad() {

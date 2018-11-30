@@ -34,11 +34,12 @@ export class RestProvider {
   }
 
   getMediaById(id : string) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       this.http.get(this.apiGetMediaUrl+id).subscribe(data => {
         resolve(data);
       }, err => {
         console.log(err);
+        reject(err);
       });
     });
   }

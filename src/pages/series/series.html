@@ -11,8 +11,12 @@
 
     <ion-searchbar padding (ionInput)="searchSerie($event)"></ion-searchbar>
 
-    <div *ngFor="let item of items">
-      <cards-partial [item]="item"></cards-partial>
-    </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let item of items" col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3>
+          <cards-partial (click)="navigateToDetail($event, item)" [item]="item"></cards-partial>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
 </ion-content>

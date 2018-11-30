@@ -12,13 +12,15 @@ import { MyApp } from './app.component';
 import { RestProvider } from '../providers/rest/rest';
 
 //pages
+import { MovieDetailPage } from './../pages/movie-detail/movie-detail';
 
 //components
 import { TabsPageModule } from './../pages/tabs/tabs.module';
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
+    MovieDetailPage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,8 @@ import { TabsPageModule } from './../pages/tabs/tabs.module';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
+    MovieDetailPage
   ],
   providers: [
     StatusBar,

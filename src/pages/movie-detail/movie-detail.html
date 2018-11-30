@@ -1,0 +1,43 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ pageTitle }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <div *ngIf="selectedMediaDetails" >
+        <img src="{{ selectedMediaDetails.Poster }}"/>
+        <ion-row no-padding>
+            <ion-col text-right>
+              <button ion-button clear default color="gold" icon-start>
+                Favoris <ion-icon name='star-outline'></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+    
+          <h1>
+            <b>Titre :</b> {{ selectedMediaDetails.Title }}
+          </h1>
+          <p>{{ selectedMediaDetails.Plot }}</p>
+          <ul>
+            <li><b>Année: </b> {{ selectedMediaDetails.Year }}</li>
+            <li><b>Genre: </b> {{ selectedMediaDetails.Genre }}</li>
+            <li><b>Durée: </b> {{ selectedMediaDetails.Runtime }}</li>
+            <li><b>Producteur: </b> {{ selectedMediaDetails.Production }}</li>
+            <li><b>Acteurs: </b> {{ selectedMediaDetails.Actors }}</li>
+            <li><b>Nomination(s): </b> {{ selectedMediaDetails.Awards }}</li>
+            <li><b>Note: </b> {{ selectedMediaDetails.Year }}</li>
+            <li><b>Site Web: </b> {{ selectedMediaDetails.Website }}</li>
+          </ul>
+
+            <ion-list *ngIf="nbSeasons > 0">
+                <button *ngFor="let item of nbSeasonsArray" (click)="navigateToSeason($event, item)" ion-item>Saison {{ item }}</button>
+            </ion-list>
+    
+      </div>
+
+</ion-content>
