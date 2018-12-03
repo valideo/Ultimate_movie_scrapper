@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { TabsPage } from './tabs';
+import { FavorisPage } from './favoris';
 import { CardsPartialComponentModule } from './../../components/cards-partial/cards-partial.module';
 
 @NgModule({
   declarations: [
-    TabsPage,
+    FavorisPage,
   ],
   imports: [
-    IonicPageModule.forChild(TabsPage),
-    CardsPartialComponentModule
-  ]
+    IonicPageModule.forChild(FavorisPage),
+    CardsPartialComponentModule,
+  ],
 })
-export class TabsPageModule {}
+export class FavorisPageModule {}

@@ -1,0 +1,31 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title *ngIf="selectedEpisodeDetails">{{ selectedEpisodeDetails.Title }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <div *ngIf="selectedEpisodeDetails" >
+      <img src="{{ selectedEpisodeDetails.Poster }}"/>
+      <h1>
+        <b>Titre :</b> {{ selectedEpisodeDetails.Title }}
+      </h1>
+      <p>{{ selectedEpisodeDetails.Plot }}</p>
+      <ul>
+        <li><b>Année: </b> {{ selectedEpisodeDetails.Year }}</li>
+        <li><b>Genre: </b> {{ selectedEpisodeDetails.Genre }}</li>
+        <li><b>Durée: </b> {{ selectedEpisodeDetails.Runtime }}</li>
+        <li><b>Producteur: </b> {{ selectedEpisodeDetails.Production }}</li>
+        <li><b>Acteurs: </b> {{ selectedEpisodeDetails.Actors }}</li>
+        <li><b>Nomination(s): </b> {{ selectedEpisodeDetails.Awards }}</li>
+        <li><b>Note: </b> {{ selectedEpisodeDetails.Year }}</li>
+        <li><b>Site Web: </b> {{ selectedEpisodeDetails.Website }}</li>
+      </ul>
+
+  </div>
+
+</ion-content>

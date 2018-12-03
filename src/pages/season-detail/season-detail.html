@@ -16,7 +16,7 @@
             </h2>
 
               <ion-list>
-                  <button *ngFor="let item of selectedSeasonDetails.Episodes" ion-item>Episode {{ item.Episode }} - {{ item.Title }} </button>
+                  <button *ngFor="let item of selectedSeasonDetails.Episodes" (click)="navigateToEpisode($event,mediaID, selectedSeason, item.Episode)" ion-item>Episode {{ item.Episode }} - {{ item.Title }} </button>
               </ion-list>
       
         </div>

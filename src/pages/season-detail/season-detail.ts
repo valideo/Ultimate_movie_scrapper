@@ -1,3 +1,4 @@
+import { EpisodeDetailPage } from './../episode-detail/episode-detail';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
@@ -27,6 +28,10 @@ export class SeasonDetailPage {
       console.log(data);
       this.selectedSeasonDetails = data;
     });
+  }
+
+  navigateToEpisode(event, mediaID, seasonNb, episodeNb){
+    this.navCtrl.push(EpisodeDetailPage, {mediaID:mediaID, seasonNb:seasonNb, episodeNb:episodeNb} );
   }
 
   ionViewDidLoad() {

@@ -14,6 +14,7 @@ import { RestProvider } from '../providers/rest/rest';
 //pages
 import { MovieDetailPage } from './../pages/movie-detail/movie-detail';
 import { SeasonDetailPage } from './../pages/season-detail/season-detail';
+import { EpisodeDetailPage } from './../pages/episode-detail/episode-detail';
 
 //components
 import { TabsPageModule } from './../pages/tabs/tabs.module';
@@ -23,6 +24,7 @@ import { TabsPageModule } from './../pages/tabs/tabs.module';
     MyApp,
     MovieDetailPage,
     SeasonDetailPage,
+    EpisodeDetailPage,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +37,7 @@ import { TabsPageModule } from './../pages/tabs/tabs.module';
     MyApp,
     MovieDetailPage,
     SeasonDetailPage,
+    EpisodeDetailPage
   ],
   providers: [
     StatusBar,
