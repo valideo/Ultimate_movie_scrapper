@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
 import { StatusBar } from '@ionic-native/status-bar';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 //root
 import { MyApp } from './app.component';
@@ -43,7 +44,8 @@ import { TabsPageModule } from './../pages/tabs/tabs.module';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RestProvider
+    RestProvider,
+    NativeStorage,
   ]
 })
 export class AppModule {}

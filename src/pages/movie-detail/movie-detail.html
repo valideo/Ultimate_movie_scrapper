@@ -13,9 +13,10 @@
         <img src="{{ selectedMediaDetails.Poster }}"/>
         <ion-row no-padding>
             <ion-col text-right>
-              <button ion-button clear default color="gold" icon-start>
-                Favoris <ion-icon name='star-outline'></ion-icon>
-              </button>
+                <button (click)="testDB(selectedMediaDetails.imdbID)" ion-button icon-start color="gold">
+                  <ion-icon [name]="isInFavorites? 'star' : 'star-outline'"></ion-icon>
+                  {{favorisText}}
+                </button>
             </ion-col>
           </ion-row>
     
