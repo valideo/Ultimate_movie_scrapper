@@ -1,4 +1,4 @@
-import { MovieDetailPage } from './../movie-detail/movie-detail';
+import { MediaDetailPage } from './../media-detail/media-detail';
 import { RestProvider } from './../../providers/rest/rest';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -31,7 +31,7 @@ export class MoviesPage {
 
   }
   navigateToDetail(event, item){
-    this.navCtrl.push(MovieDetailPage, {item:item});
+    this.navCtrl.push(MediaDetailPage, {item:item});
   }
 
   ionViewDidLoad() {

@@ -14,6 +14,19 @@
       <h1>
         <b>Titre :</b> {{ selectedEpisodeDetails.Title }}
       </h1>
+      <ion-row no-padding>
+          <ion-col >
+              <ionic3-star-rating 
+                    activeIcon = "ios-star"
+                    defaultIcon = "ios-star-outline"
+                    activeColor = "gold" 
+                    defaultColor = "gold"
+                    readonly="true"
+                    [rating]="noteFive">
+              </ionic3-star-rating>
+            ( {{ selectedEpisodeDetails.imdbVotes }} votes)
+          </ion-col>
+        </ion-row>
       <p>{{ selectedEpisodeDetails.Plot }}</p>
       <ul>
         <li><b>Année: </b> {{ selectedEpisodeDetails.Year }}</li>
@@ -22,7 +35,6 @@
         <li><b>Producteur: </b> {{ selectedEpisodeDetails.Production }}</li>
         <li><b>Acteurs: </b> {{ selectedEpisodeDetails.Actors }}</li>
         <li><b>Nomination(s): </b> {{ selectedEpisodeDetails.Awards }}</li>
-        <li><b>Note: </b> {{ selectedEpisodeDetails.Year }}</li>
         <li><b>Site Web: </b> {{ selectedEpisodeDetails.Website }}</li>
       </ul>
 

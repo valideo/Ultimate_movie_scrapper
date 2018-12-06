@@ -23,6 +23,19 @@
           <h1>
             <b>Titre :</b> {{ selectedMediaDetails.Title }}
           </h1>
+          <ion-row no-padding>
+            <ion-col >
+                <ionic3-star-rating 
+                      activeIcon = "ios-star"
+                      defaultIcon = "ios-star-outline"
+                      activeColor = "gold" 
+                      defaultColor = "gold"
+                      readonly="true"
+                      [rating]="noteFive">
+                </ionic3-star-rating>
+              ( {{ selectedMediaDetails.imdbVotes }} votes)
+            </ion-col>
+          </ion-row>
           <p>{{ selectedMediaDetails.Plot }}</p>
           <ul>
             <li><b>Année: </b> {{ selectedMediaDetails.Year }}</li>
@@ -31,7 +44,6 @@
             <li><b>Producteur: </b> {{ selectedMediaDetails.Production }}</li>
             <li><b>Acteurs: </b> {{ selectedMediaDetails.Actors }}</li>
             <li><b>Nomination(s): </b> {{ selectedMediaDetails.Awards }}</li>
-            <li><b>Note: </b> {{ selectedMediaDetails.Year }}</li>
             <li><b>Site Web: </b> {{ selectedMediaDetails.Website }}</li>
           </ul>
 

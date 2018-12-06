@@ -1,5 +1,5 @@
 import { NativeStorage } from '@ionic-native/native-storage';
-import { MovieDetailPage } from './../movie-detail/movie-detail';
+import { MediaDetailPage } from './../media-detail/media-detail';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestProvider } from './../../providers/rest/rest';
@@ -42,7 +42,7 @@ export class FavorisPage {
   }
 
   navigateToDetail(event, item){
-    this.navCtrl.push(MovieDetailPage, {item:item});
+    this.navCtrl.push(MediaDetailPage, {item:item});
   }
 
   clearAll(){
