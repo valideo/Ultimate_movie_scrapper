@@ -32,11 +32,13 @@ export class FavorisPage {
   }
 
   getMedia(key : string) {
-    this.RestProvider.getMediaById(key)
-    .then(data => {
-      this.items[this.iteration] = data;
-      this.iteration +=1;
-    });
+    if(key.substring(0,2) == "tt"){
+      this.RestProvider.getMediaById(key)
+      .then(data => {
+        this.items[this.iteration] = data;
+        this.iteration +=1;
+      });
+    }
   }
 
   navigateToDetail(event, item){
