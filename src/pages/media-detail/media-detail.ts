@@ -1,15 +1,15 @@
 import { NativeStorage } from '@ionic-native/native-storage';
-import { SeasonDetailPage } from './../season-detail/season-detail';
-import { RestProvider } from './../../providers/rest/rest';
+import { SeasonDetailPage } from '../season-detail/season-detail';
+import { RestProvider } from '../../providers/rest/rest';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-movie-detail',
-  templateUrl: 'movie-detail.html',
+  selector: 'page-media-detail',
+  templateUrl: 'media-detail.html',
 })
-export class MovieDetailPage {
+export class MediaDetailPage {
 
   selectedMedia : any;
   mediaID : string = "";
@@ -19,6 +19,7 @@ export class MovieDetailPage {
   favorisText : string = "Ajouter aux favoris";
   isInFavorites : boolean = false;
   nbSeasonsArray : number[];
+  noteFive : number = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, private nativeStorage: NativeStorage) {
     this.selectedMedia = navParams.get('item');
@@ -32,6 +33,7 @@ export class MovieDetailPage {
     .then(data => {
       this.selectedMediaDetails = data;
       this.nbSeasons = parseInt(this.selectedMediaDetails.totalSeasons);
+      this.noteFive = parseFloat(this.selectedMediaDetails.imdbRating)/2; 
       if(this.nbSeasons > 0)
         this.nbSeasonsArray = new Array(this.nbSeasons).fill(0).map((item,index) => index + 1);
     });

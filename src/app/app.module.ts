@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { StarRatingModule } from 'ionic3-star-rating';
 
 //root
 import { MyApp } from './app.component';
@@ -13,7 +14,7 @@ import { MyApp } from './app.component';
 import { RestProvider } from '../providers/rest/rest';
 
 //pages
-import { MovieDetailPage } from './../pages/movie-detail/movie-detail';
+import { MediaDetailPage } from './../pages/media-detail/media-detail';
 import { SeasonDetailPage } from './../pages/season-detail/season-detail';
 import { EpisodeDetailPage } from './../pages/episode-detail/episode-detail';
 
@@ -23,7 +24,7 @@ import { TabsPageModule } from './../pages/tabs/tabs.module';
 @NgModule({
   declarations: [
     MyApp,
-    MovieDetailPage,
+    MediaDetailPage,
     SeasonDetailPage,
     EpisodeDetailPage,
   ],
@@ -31,12 +32,13 @@ import { TabsPageModule } from './../pages/tabs/tabs.module';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     TabsPageModule,
-    HttpClientModule
+    HttpClientModule,
+    StarRatingModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    MovieDetailPage,
+    MediaDetailPage,
     SeasonDetailPage,
     EpisodeDetailPage
   ],

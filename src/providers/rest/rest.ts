@@ -5,15 +5,16 @@ import { Injectable } from '@angular/core';
 export class RestProvider {
 
   apiSearchMovieUrl = "http://www.omdbapi.com/?apikey=75522b56&type=movie&s=";
-  apiSearchSerieUrl = "http://www.omdbapi.com/?apikey=75522b56&type=series&s="
-  apiGetMediaUrl = "http://www.omdbapi.com/?apikey=75522b56&i="
+  apiSearchSerieUrl = "http://www.omdbapi.com/?apikey=75522b56&type=series&s=";
+  apiGetMediaUrl = "http://www.omdbapi.com/?apikey=75522b56&i=";
+  pageParameter = "&page=";
 
   constructor(public http: HttpClient) {
   }
 
-  searchMovieByKey(keyword : string) {
+  searchMovieByKey(keyword : string, page : string) {
     return new Promise((resolve, reject) => {
-      this.http.get(this.apiSearchMovieUrl+keyword).subscribe(data => {
+      this.http.get(this.apiSearchMovieUrl+keyword+this.pageParameter+page).subscribe(data => {
         resolve(data['Search']);
       }, err => {
         console.log(err);
@@ -22,9 +23,9 @@ export class RestProvider {
     });
   }
 
-  searchSerieByKey(keyword : string) {
+  searchSerieByKey(keyword : string, page : string) {
     return new Promise((resolve, reject) => {
-      this.http.get(this.apiSearchSerieUrl+keyword).subscribe(data => {
+      this.http.get(this.apiSearchSerieUrl+keyword+this.pageParameter+page).subscribe(data => {
         resolve(data['Search']);
       }, err => {
         console.log(err);

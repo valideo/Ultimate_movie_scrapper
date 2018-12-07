@@ -13,6 +13,7 @@ export class EpisodeDetailPage {
   selectedSeason : any;
   mediaID : string;
   selectedEpisodeDetails : any;
+  noteFive : number = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
     this.selectedEpisode = navParams.get('episodeNb');
@@ -26,6 +27,8 @@ export class EpisodeDetailPage {
     .then(data => {
       console.log(data);
       this.selectedEpisodeDetails = data;
+      this.noteFive = parseFloat(this.selectedEpisodeDetails.imdbRating)/2; 
+      console.log(this.noteFive);
     });
   }
 
