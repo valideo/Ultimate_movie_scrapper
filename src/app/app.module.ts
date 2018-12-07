@@ -7,6 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { StarRatingModule } from 'ionic3-star-rating';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { File } from '@ionic-native/file';
 
 //root
 import { MyApp } from './app.component';
@@ -50,6 +51,7 @@ import { TabsPageModule } from './../pages/tabs/tabs.module';
     RestProvider,
     NativeStorage,
     SocialSharing,
+    File,
   ]
 })
 export class AppModule {}

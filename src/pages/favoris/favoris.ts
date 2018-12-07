@@ -4,6 +4,7 @@ import { MediaDetailPage } from './../media-detail/media-detail';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestProvider } from './../../providers/rest/rest';
+import { File } from '@ionic-native/file';
 
 @IonicPage()
 @Component({
@@ -15,7 +16,7 @@ export class FavorisPage {
   items: any = [];
   iteration: number = 0;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public RestProvider: RestProvider, private nativeStorage: NativeStorage, private socialSharing: SocialSharing) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public RestProvider: RestProvider, private nativeStorage: NativeStorage, private socialSharing: SocialSharing, private file: File) {
 
   }
 
@@ -43,12 +44,37 @@ export class FavorisPage {
     }
   }
 
+  saveAsCsv() {
+    this.nativeStorage.keys()
+    .then(data => {
+      console.log("Keys :" + data);
+      var csv: any = this.convertToCSV(data);
+      var fileName: any = "favoris.csv"
+      this.file.writeFile(this.file.dataDirectory, fileName, csv)
+      .then((fileEntry) =>{
+        console.log(fileEntry.nativeURL);
+      })
+    },
+    error => console.error(error)
+    );
+  }
+
+  convertToCSV(data) {
+    var csv: any = ''
+    var line: any = ''
+
+    return csv
+  }
+
   shareFavorites(){
-    this.socialSharing.share("My favorites from UMS", "My favorites from UMS", "favoris.csv", "http://www.valideoc.com" )
+
+    let options = {message : "testMessage", subject : "testSubject", files : ["file://favoris.csv"]};
+    options
+    this.socialSharing.shareWithOptions(options)
     .then(()=>{
 
-    }).catch(()=>{
-
+    }).catch((err)=>{
+      console.error(err);
     });
   }
 
