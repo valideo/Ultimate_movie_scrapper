@@ -52,6 +52,7 @@ export class FavorisPage {
       var fileName: any = "favoris.csv"
       this.file.writeFile(this.file.dataDirectory, fileName, csv)
       .then((fileEntry) =>{
+        this.shareFile(fileEntry.nativeURL);
         console.log(fileEntry.nativeURL);
       })
     },
@@ -61,14 +62,16 @@ export class FavorisPage {
 
   convertToCSV(data) {
     var csv: any = ''
-    var line: any = ''
 
     return csv
   }
 
   shareFavorites(){
+    this.saveAsCsv();
+  }
 
-    let options = {message : "testMessage", subject : "testSubject", files : ["file://favoris.csv"]};
+  shareFile(url : string){
+    let options = {message : "testMessage", subject : "testSubject", files : url};
     options
     this.socialSharing.shareWithOptions(options)
     .then(()=>{
