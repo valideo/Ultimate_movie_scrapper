@@ -1,3 +1,4 @@
+import { SocialSharing } from '@ionic-native/social-sharing';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { MediaDetailPage } from './../media-detail/media-detail';
 import { Component } from '@angular/core';
@@ -14,7 +15,8 @@ export class FavorisPage {
   items: any = [];
   iteration: number = 0;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public RestProvider: RestProvider, private nativeStorage: NativeStorage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public RestProvider: RestProvider, private nativeStorage: NativeStorage, private socialSharing: SocialSharing) {
+
   }
 
   loadMedias(){
@@ -39,6 +41,15 @@ export class FavorisPage {
         this.iteration +=1;
       });
     }
+  }
+
+  shareFavorites(){
+    this.socialSharing.share("My favorites from UMS", "My favorites from UMS", "favoris.csv", "http://www.valideoc.com" )
+    .then(()=>{
+
+    }).catch(()=>{
+
+    });
   }
 
   navigateToDetail(event, item){

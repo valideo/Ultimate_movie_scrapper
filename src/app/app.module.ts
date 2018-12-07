@@ -6,6 +6,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { StarRatingModule } from 'ionic3-star-rating';
+<<<<<<< HEAD
+=======
+import { SocialSharing } from '@ionic-native/social-sharing';
+>>>>>>> 1d449f0ecc892329fc3676ce4186093c837db4ec
 
 //root
 import { MyApp } from './app.component';
@@ -48,6 +52,7 @@ import { TabsPageModule } from './../pages/tabs/tabs.module';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RestProvider,
     NativeStorage,
+    SocialSharing,
   ]
 })
 export class AppModule {}
