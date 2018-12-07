@@ -44,9 +44,11 @@ export class FavorisPage {
   }
 
   shareFavorites(){
-    this.socialSharing.share("My favorites from UMS", "My favorites from UMS", "favoris.csv", "http://www.valideoc.com" )
+    let options = {message : "testMessage", subject : "testSubject", files : ["file://favoris.csv"]};
+    options
+    this.socialSharing.shareWithOptions(options)
     .then(()=>{
-
+      
     }).catch(()=>{
 
     });
