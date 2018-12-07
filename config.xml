@@ -84,5 +84,13 @@
     <plugin name="cordova-plugin-ionic-webview" spec="^1.2.1" />
     <plugin name="cordova-plugin-x-socialsharing" spec="~5.4.3" />
     <engine name="browser" spec="5.0.4" />
+<<<<<<< HEAD
     <engine name="ios" spec="4.5.5" />
+=======
+<<<<<<< HEAD
+    <plugin name="cordova-plugin-file" spec="6.0.1" />
+=======
+    <engine name="ios" spec="^4.5.5" />
+>>>>>>> 67d77ea098490950611c1b9fefd0f81c7663a2ce
+>>>>>>> f2031549794167735ff9bfc154ee5f3a34a511fe
 </widget>
