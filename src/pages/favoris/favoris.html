@@ -10,11 +10,14 @@
 <ion-content>
     <ion-grid>
         <ion-row>
-          <ion-col col-6>
+          <ion-col col-4 col-sm-6 col-xs-6 col-md-6 col-lg-4 col-xl-4>
             <button ion-button full color="danger" (click)="clearAll()">Tout supprimer</button>
           </ion-col>
-          <ion-col col-6>
-              <button ion-button full color="primary" (click)="shareFavorites()">Exporter les favoris</button>
+          <ion-col col-4 col-sm-6 col-xs-6 col-md-6 col-lg-4 col-xl-4>
+              <button ion-button full color="primary" (click)="saveAsCsv()">Exporter les favoris</button>
+            </ion-col>
+            <ion-col col-4 col-sm-6 col-xs-6 col-md-6 col-lg-4 col-xl-4>
+              <button ion-button full color="primary" (click)="openCsv()">Importer les favoris</button>
             </ion-col>
         </ion-row>
       </ion-grid>

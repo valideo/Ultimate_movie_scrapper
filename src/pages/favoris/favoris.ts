@@ -2,9 +2,11 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { MediaDetailPage } from './../media-detail/media-detail';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Platform } from 'ionic-angular';
 import { RestProvider } from './../../providers/rest/rest';
 import { File } from '@ionic-native/file';
+import { FileChooser } from '@ionic-native/file-chooser';
+import { IOSFilePicker } from '@ionic-native/file-picker';
 
 @IonicPage()
 @Component({
@@ -14,9 +16,10 @@ import { File } from '@ionic-native/file';
 export class FavorisPage {
 
   items: any = [];
+  keys: any = [];
   iteration: number = 0;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public RestProvider: RestProvider, private nativeStorage: NativeStorage, private socialSharing: SocialSharing, private file: File) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public RestProvider: RestProvider, private nativeStorage: NativeStorage, private socialSharing: SocialSharing, private file: File, private alertCtrl: AlertController, private fileChooser: FileChooser, public plt: Platform, private filePicker: IOSFilePicker) {
 
   }
 
@@ -39,40 +42,74 @@ export class FavorisPage {
       this.RestProvider.getMediaById(key)
       .then(data => {
         this.items[this.iteration] = data;
+        this.keys[this.iteration] = key;
         this.iteration +=1;
       });
     }
   }
 
   saveAsCsv() {
-    this.nativeStorage.keys()
-    .then(data => {
-      console.log("Keys :" + data);
-      var csv: any = this.convertToCSV(data);
-      var fileName: any = "favoris.csv"
-      this.file.writeFile(this.file.dataDirectory, fileName, csv)
+
+      var csv: string = "";
+      console.log(this.keys);
+      this.keys.forEach(item => {
+        csv += item.toString() + ",";
+      });
+      console.log(csv);
+      var fileName: any = "favoris.csv";
+      console.log(this.file.dataDirectory);
+      this.file.writeFile(this.file.dataDirectory, fileName, csv, {replace : true})
       .then((fileEntry) =>{
-        this.shareFile(fileEntry.nativeURL);
-        console.log(fileEntry.nativeURL);
-      })
-    },
-    error => console.error(error)
-    );
+        console.log(fileEntry);
+        this.shareFile(fileEntry.nativeURL.toString());
+      }).catch((err)=>{
+        console.log("error writing file");
+        console.error(err);
+      });
   }
 
-  convertToCSV(data) {
-    var csv: any = ''
+  openCsv(){
+    const confirm = this.alertCtrl.create({
+      title: 'Importer les favoris ?',
+      message: 'Attention ! Importer vos favoris supprimera vos favoris actuels. Continuer ?',
+      buttons: [
+        {
+          text: 'Refuser',
+          handler: () => {}
+        },
+        {
+          text: 'Accepter',
+          handler: () => {
 
-    return csv
-  }
+            if (this.plt.is('android')) {
 
-  shareFavorites(){
-    this.saveAsCsv();
-  }
+            this.fileChooser.open()
+            .then(uri => {
+              console.log(uri);
+            })
+            .catch(e => console.log(e));
+
+          }
+
+            if (this.plt.is('ios')) {
+
+              this.filePicker.pickFile()
+              .then(uri => {
+                console.log(uri);
+              })
+              .catch(err => console.log('Error', err));
+
+            }
+          }
+          
+        }
+      ]
+    });
+    confirm.present();
+    }
 
   shareFile(url : string){
-    let options = {message : "testMessage", subject : "testSubject", files : url};
-    options
+    let options = {message : "testMessage", subject : "testSubject", files : [url]};
     this.socialSharing.shareWithOptions(options)
     .then(()=>{
 

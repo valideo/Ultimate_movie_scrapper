@@ -8,6 +8,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { StarRatingModule } from 'ionic3-star-rating';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { File } from '@ionic-native/file';
+import { IOSFilePicker } from '@ionic-native/file-picker';
 
 //root
 import { MyApp } from './app.component';
@@ -22,6 +23,7 @@ import { EpisodeDetailPage } from './../pages/episode-detail/episode-detail';
 
 //components
 import { TabsPageModule } from './../pages/tabs/tabs.module';
+import { FileChooser } from '@ionic-native/file-chooser';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { TabsPageModule } from './../pages/tabs/tabs.module';
     NativeStorage,
     SocialSharing,
     File,
+    FileChooser,
+    IOSFilePicker
   ]
 })
 export class AppModule {}
