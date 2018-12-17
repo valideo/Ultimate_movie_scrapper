@@ -8,6 +8,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { StarRatingModule } from 'ionic3-star-rating';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { File } from '@ionic-native/file';
+import { Geolocation } from '@ionic-native/geolocation';
 
 //root
 import { MyApp } from './app.component';
@@ -52,6 +53,7 @@ import { TabsPageModule } from './../pages/tabs/tabs.module';
     NativeStorage,
     SocialSharing,
     File,
+    Geolocation,
   ]
 })
 export class AppModule {}

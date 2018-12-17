@@ -8,6 +8,7 @@ export class RestProvider {
   apiSearchSerieUrl = "http://www.omdbapi.com/?apikey=75522b56&type=series&s=";
   apiGetMediaUrl = "http://www.omdbapi.com/?apikey=75522b56&i=";
   pageParameter = "&page=";
+  apiGoogleCinemasUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?type=movie_theater&key=AIzaSyDOAfd61JdNRe92ZgNU0N4DRJL3pDhp-9k&location=";
 
   constructor(public http: HttpClient) {
   }
@@ -58,6 +59,17 @@ export class RestProvider {
   getEpisodeByNumber(id : string, season : string, episode : string) {
     return new Promise(resolve => {
       this.http.get(this.apiGetMediaUrl+id+"&Season="+season+"&Episode="+episode).subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
+  }
+
+  getCinemasByLocation(position : string, radius : string) {
+    let distance = "&radius="+radius;
+    return new Promise(resolve => {
+      this.http.get(this.apiGoogleCinemasUrl+position+distance).subscribe(data => {
         resolve(data);
       }, err => {
         console.log(err);
