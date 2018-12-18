@@ -90,4 +90,5 @@
         <string>We use your location for full functionality of certain app features.</string>
     </edit-config>
     <engine name="browser" spec="5.0.4" />
+    <engine name="ios" spec="4.5.5" />
 </widget>

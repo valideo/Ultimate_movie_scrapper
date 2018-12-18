@@ -12,29 +12,40 @@ export class MapPage {
   @ViewChild('map') mapContainer: ElementRef;
   map: any;
   options : GeolocationOptions;
-  currentPos : Geoposition;
+  currentLat : string;
+  distanceRadius : number = 1500;
+  currentLong : string;
   cinemas: any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private geolocation: Geolocation, private provider: RestProvider) {
-    let watch = this.geolocation.watchPosition();
-    watch.subscribe((data) => {
-    console.log(data);
-    });
   }
 
   getUserPosition(){
     this.options = {
         enableHighAccuracy : true
     };
-
     this.geolocation.getCurrentPosition(this.options).then((pos : Geoposition) => {
 
-        this.currentPos = pos;      
-        console.log(pos);
+      this.currentLat = pos["coords"].latitude.toString(); 
+      this.currentLong = pos["coords"].longitude.toString();     
+      this.loadCinemas(this.currentLat, this.currentLong);
 
-    },(err : PositionError)=>{
-        console.log("error : " + err.message);
-    });
+      var circle = leaflet.circle([this.currentLat, this.currentLong], {
+      color: 'red',
+      fillColor: '#f03',
+      fillOpacity: 0.3,
+      radius: this.distanceRadius,
+      }).addTo(this.map);
+      var circlePosition = leaflet.circleMarker([this.currentLat, this.currentLong], {
+      color: 'blue',
+      fillColor: 'blue',
+      fillOpacity: 0.8,
+      radius: 8
+      }).addTo(this.map);
+      circlePosition.bindPopup("Votre position");
+      },(err : PositionError)=>{
+          console.log("error : " + err.message);
+      });
 }
 
   ionViewWillEnter(){
@@ -51,26 +62,16 @@ export class MapPage {
     }).addTo(this.map);
   }
 
-  ionViewDidEnter(){
+  radiusChange(){
+    this.map.clearLayers();
+    console.log(this.distanceRadius);
     this.getUserPosition();
-    this.loadCinemas();
-    var circle = leaflet.circle([45.768200, 4.867350], {
-      color: 'red',
-      fillColor: '#f03',
-      fillOpacity: 0.3,
-      radius: 1500
-  }).addTo(this.map);
 
-  var circlePosition = leaflet.circleMarker([45.768200, 4.867350], {
-    color: 'blue',
-    fillColor: 'blue',
-    fillOpacity: 0.8,
-    radius: 8
-}).addTo(this.map);
-circlePosition.bindPopup("Votre position");
+  }
 
-
-this.map.setView([45.768200, 4.867350], 18);
+  ionViewDidEnter(){
+    console.log(this.distanceRadius);
+    this.getUserPosition();
   }
 
   ionViewDidLeave(){
@@ -79,9 +80,9 @@ this.map.setView([45.768200, 4.867350], 18);
     }
   }
 
-  loadCinemas(){
-    let position = "45.768200,4.867350";
-    let radius = "1500"
+  loadCinemas(lat: string, lng: string){
+    let position = lat+","+lng;
+    let radius = this.distanceRadius.toString();
     let markerGroup = leaflet.featureGroup();
     this.provider.getCinemasByLocation(position, radius)
     .then(data => {
@@ -95,6 +96,7 @@ this.map.setView([45.768200, 4.867350], 18);
         marker.bindPopup("<h3>"+name+"</h3><div>"+address+"</div>");
         markerGroup.addLayer(marker);
       });
+      this.map.setView([this.currentLat, this.currentLong], 10);
       this.map.addLayer(markerGroup);
 
     });;
