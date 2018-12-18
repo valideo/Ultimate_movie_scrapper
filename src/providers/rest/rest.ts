@@ -69,6 +69,7 @@ export class RestProvider {
   getCinemasByLocation(position : string, radius : string) {
     let distance = "&radius="+radius;
     return new Promise(resolve => {
+      console.log(this.apiGoogleCinemasUrl+position+distance);
       this.http.get(this.apiGoogleCinemasUrl+position+distance).subscribe(data => {
         resolve(data);
       }, err => {
