@@ -9,6 +9,8 @@ import { StarRatingModule } from 'ionic3-star-rating';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { File } from '@ionic-native/file';
 import { Geolocation } from '@ionic-native/geolocation';
+import { HTTP } from '@ionic-native/http';
+
 
 //root
 import { MyApp } from './app.component';
@@ -54,6 +56,7 @@ import { TabsPageModule } from './../pages/tabs/tabs.module';
     SocialSharing,
     File,
     Geolocation,
+    HTTP,
   ]
 })
 export class AppModule {
