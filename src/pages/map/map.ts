@@ -63,7 +63,6 @@ export class MapPage {
   }
 
   radiusChange(){
-    this.map.clearLayers();
     console.log(this.distanceRadius);
     this.getUserPosition();
 

@@ -23,7 +23,6 @@ import { EpisodeDetailPage } from './../pages/episode-detail/episode-detail';
 
 //components
 import { TabsPageModule } from './../pages/tabs/tabs.module';
-import { CardsPartialComponentModule } from './../components/cards-partial/cards-partial.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +37,6 @@ import { CardsPartialComponentModule } from './../components/cards-partial/cards
     TabsPageModule,
     HttpClientModule,
     StarRatingModule,
-    CardsPartialComponentModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
